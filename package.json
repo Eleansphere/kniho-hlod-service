@@ -16,7 +16,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "core-update": "npm install @eleansphere/be-core@latest @eleansphere/service-core@latest"
   },
   "keywords": [],
   "author": "Eleansphere",
