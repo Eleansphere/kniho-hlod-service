@@ -23,10 +23,10 @@
   "author": "Eleansphere",
   "license": "ISC",
   "dependencies": {
-    "@eleansphere/service-core": "^1.1.0"
+    "@eleansphere/service-core": "^1.2.0"
   },
   "devDependencies": {
-    "@eleansphere/be-core": "^1.1.0",
+    "@eleansphere/be-core": "^1.2.0",
     "typescript": "^5.4.5"
   }
 }
