@@ -8,9 +8,10 @@ type FieldType = 'STRING' | 'TEXT' | 'INTEGER' | 'BOOLEAN' | 'DATE' | 'BLOB';
 
 export type FieldDef = {
   type: FieldType;
-  required?: boolean;
+  /** Use `required: true` (literal). Prevents TypeScript from widening to `boolean`. */
+  required?: true;
   /** Excluded from read Dto (e.g. password, binary blobs). Still included in CreateDto. */
-  writeOnly?: boolean;
+  writeOnly?: true;
   default?: unknown;
   [key: string]: unknown;
 };

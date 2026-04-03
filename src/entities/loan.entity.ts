@@ -1,11 +1,11 @@
 import { defineEntity, type InferDto } from '../entity-factory';
 
 const loanFields = {
-  borrower: { type: 'STRING' as const, required: true },
-  loanDate: { type: 'DATE' as const, required: true },
+  borrower: { type: 'STRING' as const, required: true as const },
+  loanDate: { type: 'DATE' as const, required: true as const },
   returnDate: { type: 'DATE' as const },
-  bookId: { type: 'STRING' as const, required: true },
-  ownerId: { type: 'STRING' as const, required: true },
+  bookId: { type: 'STRING' as const, required: true as const },
+  ownerId: { type: 'STRING' as const, required: true as const },
   isReturned: { type: 'BOOLEAN' as const, default: false as const },
 };
 
