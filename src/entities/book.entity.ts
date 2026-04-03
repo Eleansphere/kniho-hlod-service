@@ -1,8 +1,10 @@
-import type { ModelConfig } from '@eleansphere/be-core';
+import { defineEntity } from '../entity-factory';
 
-export const bookConfig = {
+export const bookEntity = defineEntity({
   name: 'book',
   prefix: 'b',
+  basePath: '/api/books',
+  userScoped: true,
   fields: {
     title: { type: 'STRING' as const, required: true, maxLength: 200 },
     author: { type: 'STRING' as const, maxLength: 100 },
@@ -11,19 +13,4 @@ export const bookConfig = {
     isAvailable: { type: 'BOOLEAN' as const, required: true },
     ownerId: { type: 'STRING' as const, required: true },
   },
-} satisfies ModelConfig;
-
-// DTO types
-
-export type BookDto = {
-  id: string;
-  title: string;
-  author?: string;
-  description?: string;
-  publicationYear?: number;
-  isAvailable: boolean;
-  ownerId: string;
-};
-
-export type CreateBookDto = Omit<BookDto, 'id'>;
-export type UpdateBookDto = Partial<CreateBookDto>;
+});

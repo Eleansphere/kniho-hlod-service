@@ -1,24 +1,30 @@
 import { AbstractServiceContainer } from '@eleansphere/service-core';
 import { AuthService } from './services/auth.service';
-import { UserService } from './services/user.service';
-import { BookService } from './services/book.service';
-import { LoanService } from './services/loan.service';
-import { FileService } from './services/file.service';
+import { bookEntity } from './entities/book.entity';
+import { loanEntity } from './entities/loan.entity';
+import { userEntity } from './entities/user.entity';
+import { profileImageEntity } from './entities/profile-image.entity';
 
 export class KnihoHlodServices extends AbstractServiceContainer {
   readonly auth: AuthService;
-  readonly users: UserService;
-  readonly books: BookService;
-  readonly loans: LoanService;
-  readonly files: FileService;
+  readonly users: InstanceType<typeof userEntity.Service>;
+  readonly books: InstanceType<typeof bookEntity.Service>;
+  readonly loans: InstanceType<typeof loanEntity.Service>;
+  readonly files: InstanceType<typeof profileImageEntity.Service>;
 
-  constructor(baseUrl: string, tokenProvider: () => string | null) {
+  constructor(
+    baseUrl: string,
+    tokenProvider: () => string | null,
+    userIdProvider: () => string | null
+  ) {
     super(baseUrl, tokenProvider);
     this.auth = new AuthService(...this.args());
-    this.users = new UserService(...this.args());
-    this.books = new BookService(...this.args());
-    this.loans = new LoanService(...this.args());
-    this.files = new FileService(...this.args());
+    this.users = new userEntity.Service(...this.args());
+    this.books = new bookEntity.Service(...this.args());
+    this.books.setUserIdProvider(userIdProvider);
+    this.loans = new loanEntity.Service(...this.args());
+    this.loans.setUserIdProvider(userIdProvider);
+    this.files = new profileImageEntity.Service(...this.args());
   }
 }
 
@@ -26,9 +32,10 @@ let _instance: KnihoHlodServices | null = null;
 
 export function configureServices(
   baseUrl: string,
-  tokenProvider: () => string | null
+  tokenProvider: () => string | null,
+  userIdProvider: () => string | null
 ): KnihoHlodServices {
-  _instance = new KnihoHlodServices(baseUrl, tokenProvider);
+  _instance = new KnihoHlodServices(baseUrl, tokenProvider, userIdProvider);
   return _instance;
 }
 
