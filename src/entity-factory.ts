@@ -109,6 +109,7 @@ export function defineEntity<TFields extends Fields>(
     name,
     prefix,
     ...(routePath != null && { routePath }),
+    ...(userScoped != null && { userScoped }),
     fields,
   } satisfies ModelConfig;
 

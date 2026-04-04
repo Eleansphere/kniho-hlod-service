@@ -12,18 +12,12 @@ export class KnihoHlodServices extends AbstractServiceContainer {
   readonly loans: InstanceType<typeof loanEntity.Service>;
   readonly files: InstanceType<typeof profileImageEntity.Service>;
 
-  constructor(
-    baseUrl: string,
-    tokenProvider: () => string | null,
-    userIdProvider: () => string | null
-  ) {
+  constructor(baseUrl: string, tokenProvider: () => string | null) {
     super(baseUrl, tokenProvider);
     this.auth = new AuthService(...this.args());
     this.users = new userEntity.Service(...this.args());
     this.books = new bookEntity.Service(...this.args());
-    this.books.setUserIdProvider(userIdProvider);
     this.loans = new loanEntity.Service(...this.args());
-    this.loans.setUserIdProvider(userIdProvider);
     this.files = new profileImageEntity.Service(...this.args());
   }
 }
@@ -32,10 +26,9 @@ let _instance: KnihoHlodServices | null = null;
 
 export function configureServices(
   baseUrl: string,
-  tokenProvider: () => string | null,
-  userIdProvider: () => string | null
+  tokenProvider: () => string | null
 ): KnihoHlodServices {
-  _instance = new KnihoHlodServices(baseUrl, tokenProvider, userIdProvider);
+  _instance = new KnihoHlodServices(baseUrl, tokenProvider);
   return _instance;
 }
 
