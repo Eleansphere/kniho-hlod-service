@@ -10,7 +10,7 @@ const fields = {
 };
 
 export const systemNotificationEntity = defineEntity({
-  name: 'system-notification',
+  name: 'systemNotification',
   prefix: 'sn',
   basePath: '/api/system-notifications',
   userScoped: false,
