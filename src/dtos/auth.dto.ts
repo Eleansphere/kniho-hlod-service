@@ -17,6 +17,16 @@ export class LoginResponse {
   }
 }
 
+export class RegisterRequest {
+  username!: string;
+  email!: string;
+  password!: string;
+
+  constructor(data: Partial<RegisterRequest> = {}) {
+    Object.assign(this, data);
+  }
+}
+
 export class ChangePasswordRequest {
   currentPassword!: string;
   newPassword!: string;

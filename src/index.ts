@@ -10,7 +10,7 @@ export { profileImageEntity } from './entities/profile-image.entity';
 export { systemNotificationEntity } from './entities/system-notification.entity';
 
 // ── Shared: Auth DTOs ─────────────────────────────────────────────────────────
-export { LoginRequest, LoginResponse, ChangePasswordRequest } from './dtos/auth.dto';
+export { LoginRequest, LoginResponse, ChangePasswordRequest, RegisterRequest } from './dtos/auth.dto';
 
 // ── FE: Auth service ──────────────────────────────────────────────────────────
 export { AuthService } from './services/auth.service';
